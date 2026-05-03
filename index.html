@@ -1,288 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nirali | Laravel Developer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LNWeb | Web & Software Development</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="style.css?ver=1.2" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: #222;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #222;
+    }
+
+    .logoimg {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+    }
+
+    .logo span {
+      color: #ff7b00;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a:hover {
+      color: #ff7b00;
+      transition: 0.3s;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #ffffff;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      color: #ff7b00;
+    }
+
+    .hero p {
+      color: #666;
+      max-width: 700px;
+      margin: auto;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 30px;
+      border-radius: 10px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #ff7b00;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #e86f00;
+    }
+
+    .btn-outline {
+      border: 2px solid #ff7b00;
+    }
+
+    .btn-outline:hover {
+      background: #ff7b00;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 60px;
+    }
+
+    .section-title span {
+      color: #ff7b00;
+    }
+
+    /* About */
+    .about {
+      background: #f8f9fa;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Services */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid #e5e5e5;
+      transition: 0.3s;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .card:hover {
+      border-color: #ff7b00;
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      color: #ff7b00;
+    }
+
+    .card p {
+      color: #666;
+    }
+
+    /* Projects */
+    .projects {
+      background: #f8f9fa;
+    }
+
+    .project-box {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .project-image {
+      height: 220px;
+      background-image: url(projects/leave-management.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .project-image1 {
+      height: 220px;
+      background-image: url(projects/vms.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .project-image2 {
+      height: 220px;
+      background-image: url(projects/crematorium.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .project-content {
+      padding: 25px;
+    }
+
+    /* Testimonials */
+    .testimonial {
+      background: #ffffff;
+      padding: 35px;
+      border-radius: 20px;
+      border: 1px solid #e5e5e5;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .testimonial p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .testimonial h4 {
+      color: #ff7b00;
+    }
+
+    /* Contact */
+    .contact {
+      background: #f8f9fa;
+    }
+
+    form {
+      max-width: 700px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input,
+    textarea {
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid #dcdcdc;
+      background: #ffffff;
+      color: #222;
+      font-size: 1rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #ff7b00;
+    }
+
+    button {
+      padding: 16px;
+      background: #ff7b00;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #e86f00;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid #e5e5e5;
+      color: #666;
+      background: #ffffff;
+    }
+
+    .btn-outline {
+      border: 2px solid #ff7b00;
+      color: #ff7b00;
+    }
+
+    .btn-outline:hover {
+      background: #ff7b00;
+      color: white;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .hero h1 {
+        font-size: 2.7rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-<div class="container">
-<a class="navbar-brand fw-bold" href="#">Nirali</a>
-
-<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="nav">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-<li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-<li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-</ul>
-</div>
-
-</div>
-</nav>
-
-<section id="home" class="hero">
-<div class="container" data-aos="fade-up">
-
-<h1>Hi, I'm <span>Nirali</span></h1>
-<h3><span id="typing"></span></h3>
-
-<p class="mt-3">I build scalable web applications using Laravel, PHP, and modern web technologies.</p>
-
-<a href="#projects" class="btn btn-main mt-4">View My Work</a>
-
-</div>
-</section>
-
-<section id="about" class="section">
-<div class="container">
-
-<div class="section-title" data-aos="fade-up">
-<h2>About Me</h2>
-</div>
-
-<div class="row justify-content-center">
-
-<div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="200">
-
-<p>
-I am a passionate web developer specializing in Laravel and backend development. 
-I enjoy building systems that solve real business problems such as employee
-management systems and visitor tracking platforms.
-</p>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section id="skills" class="section">
-<div class="container">
-
-<div class="section-title" data-aos="fade-up">
-<h2>Skills</h2>
-</div>
-
-<div class="row g-4">
-
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">HTML</div></div>
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">CSS</div></div>
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">JavaScript</div></div>
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">Bootstrap</div></div>
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">PHP</div></div>
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">Laravel</div></div>
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">MySQL</div></div>
-<div class="col-md-3" data-aos="zoom-in"><div class="skill-card">Git</div></div>
-
-</div>
-
-</div>
-</section>
-
-<section id="services" class="section">
-<div class="container">
-
-<div class="section-title" data-aos="fade-up">
-<h2>Services</h2>
-</div>
-
-<div class="row g-4">
-
-<div class="col-md-4" data-aos="fade-up">
-<div class="skill-card">
-<h5>Web Application Development</h5>
-<p>I build scalable web applications using Laravel, PHP, and MySQL tailored for business needs.</p>
-</div>
-</div>
-
-<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-<div class="skill-card">
-<h5>Business Management Systems</h5>
-<p>Development of systems such as employee management, leave management, and visitor tracking.</p>
-</div>
-</div>
-
-<div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-<div class="skill-card">
-<h5>Website Development</h5>
-<p>Responsive and modern websites built with HTML, CSS, Bootstrap, and JavaScript.</p>
-</div>
-</div>
-
-</div>
-
-</div>
-</section>
-
-<section id="projects" class="section">
-<div class="container">
-
-<div class="section-title" data-aos="fade-up">
-<h2>Projects</h2>
-</div>
-
-<div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
-
-<div class="carousel-inner">
-
-<!-- SLIDE 1 -->
-<div class="carousel-item active">
-<div class="row justify-content-center">
-
-<div class="col-lg-6">
-<div class="card project-card">
-<img src="images/leave/dashboard.png" class="card-img-top" alt="Leave Management System">
-<div class="card-body">
-<h5>Leave Management System</h5>
-<p>Employees can apply for leave and admins approve or reject requests.</p>
-
-<div>
-<span class="tech-badge">Laravel</span>
-<span class="tech-badge">PHP</span>
-<span class="tech-badge">MySQL</span>
-<span class="tech-badge">JavaScript</span>
-<span class="tech-badge">Rest API</span>
-</div>
-
-<a href="https://github.com/Nirali-230224/leave-manager" class="btn btn-main mt-3">GitHub</a>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-
-<div class="carousel-item">
-<div class="row justify-content-center">
-
-<div class="col-lg-6">
-<div class="card project-card">
-<img src="images/vms/dashboard.png" class="card-img-top">
-<div class="card-body">
-<h5>Visitor Management System</h5>
-<p>User track visitor details and approve and reject meetings from the portal.</p>
-<div>
-<span class="tech-badge">Laravel</span>
-<span class="tech-badge">PHP</span>
-<span class="tech-badge">MySQL</span>
-<span class="tech-badge">JavaScript</span>
-</div>
-<a href="https://github.com/Nirali-230224/vms" class="btn btn-main mt-3">GitHub</a>
-</div>
-</div>
-</div>
-
-</div>
-
-
-</div>
-<!-- SLIDE 3 -->
-<div class="carousel-item">
-<div class="row justify-content-center">
-
-<div class="col-lg-6">
-<div class="card project-card">
-<img src="images/blog/blogs.png" class="card-img-top">
-<div class="card-body">
-<h5>Blog Manager</h5>
-<p>Manage,Add,edit and delete blogs.</p>
-<div>
-<span class="tech-badge">Laravel</span>
-<span class="tech-badge">PHP</span>
-<span class="tech-badge">MySQL</span>
-</div>
-<a href="https://github.com/Nirali-230224/blog-manager" class="btn btn-main mt-3">GitHub</a>
-</div>
-</div>
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-<button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
-<span class="carousel-control-prev-icon"></span>
-</button>
-
-<button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
-<span class="carousel-control-next-icon"></span>
-</button>
-
-</div>
-
-</div>
-</section>
-
-<section id="contact" class="section">
-<div class="container">
-
-<div class="section-title" data-aos="fade-up">
-<h2>Contact</h2>
-</div>
-
-<div class="row justify-content-center">
-
-<div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-
-<div class="contact-box">
-
-<form>
-
-<input class="form-control mb-3" placeholder="Your Name">
-<input class="form-control mb-3" placeholder="Email Address">
-<textarea class="form-control mb-3" rows="4" placeholder="Your Message"></textarea>
-<button class="btn btn-main w-100">Send Message</button>
-
-</form>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<footer>
-<p>© 2026 Nirali • Web Developer</p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-<script>
-AOS.init({duration:1000,once:true});
-</script>
-
-<script>
-var typed = new Typed("#typing", {
-strings:["Laravel Developer","Backend Developer","Web Application Builder"],
-typeSpeed:50,
-backSpeed:30,
-loop:true
-});
-</script>
+  <!-- Navbar -->
+  <nav>
+    <div class="container nav-content">
+      <div class="logo">
+        <img src="projects/logo.png" alt="LNWeb Logo" class="logoimg">
+        <div><span>LN</span>Web</div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="container">
+      <h1>
+        Build Modern <span>Websites</span> & Software Solutions
+      </h1>
+
+      <p>
+        LNWeb provides professional website development, web application development,
+        and custom software solutions tailored to business requirements.
+      </p>
+
+      <div class="btn-group">
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+        <a href="#projects" class="btn btn-outline">View Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="container">
+      <h2 class="section-title">About <span>LNWeb</span></h2>
+
+      <div class="about-content">
+        <div>
+          <p>
+            LNWeb is a modern web and software development company focused on building
+            fast, scalable, and responsive digital solutions. We help businesses grow
+            through custom websites, web applications, and management systems.
+          </p>
+        </div>
+
+        <div class="about-box">
+          <h3>Why Choose Us?</h3>
+          <br>
+          <p>✔ Modern UI Design</p>
+          <p>✔ Responsive Websites</p>
+          <p>✔ Fast Performance</p>
+          <p>✔ Custom Development</p>
+          <p>✔ Affordable Solutions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Our <span>Services</span></h2>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Website Development</h3>
+          <p>Responsive and modern business websites designed for performance and branding.</p>
+        </div>
+
+        <div class="card">
+          <h3>Web Application Development</h3>
+          <p>Custom web applications with dashboards, authentication, and business workflows.</p>
+        </div>
+
+        <div class="card">
+          <h3>Custom Software Development</h3>
+          <p>Tailored digital systems developed according to client business requirements.</p>
+        </div>
+
+        <div class="card">
+          <h3>Domain Booking and Hosting</h3>
+          <p>Modern and user-friendly interface designs focused on better user experience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="projects" id="projects">
+    <div class="container">
+      <h2 class="section-title">Our <span>Projects</span></h2>
+
+      <div class="slider-container">
+        <div class="slider-track">
+
+          <div class="slide">
+
+
+            <div class="project-box">
+              <div class="project-image"></div>
+              <div class="project-content">
+                <h3>Leave Management System</h3>
+                <p>Smart leave tracking and approval workflow system for organizations.</p>
+              </div>
+            </div>
+
+            <div class="project-box">
+              <div class="project-image1"></div>
+              <div class="project-content">
+                <h3>Visitor Management</h3>
+                <p>A digital system developed to manage and track visitor entries securely and efficiently for offices,
+                  companies, and organizations.</p>
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+          <div class="slide">
+
+
+            <div class="project-box">
+              <div class="project-image2"></div>
+              <div class="project-content">
+                <h3>Crematorium Management</h3>
+                <p>Crematorium management system developed to maintain deceased records and donations records with
+                  report generation and receipt printing.</p>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <style>
+    .slider-container {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .slider-track {
+      display: flex;
+      width: 200%;
+      animation: slideProjects 12s infinite;
+    }
+
+    .slide {
+      width: 50%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 10px;
+      flex-shrink: 0;
+    }
+
+    @keyframes slideProjects {
+      0% {
+        transform: translateX(0%);
+      }
+
+      45% {
+        transform: translateX(0%);
+      }
+
+      50% {
+        transform: translateX(-50%);
+      }
+
+      95% {
+        transform: translateX(-50%);
+      }
+
+      100% {
+        transform: translateX(0%);
+      }
+    }
+
+    @media(max-width: 768px) {
+      .slide {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Client <span>Testimonials</span></h2>
+
+      <div class="testimonial-slider-container">
+        <div class="testimonial-slider-track">
+
+          <div class="testimonial-slide">
+            <div class="testimonial">
+              <p>
+                “Professional development work and clean website design. Highly recommended.”
+              </p>
+              <h4>— Business Client</h4>
+            </div>
+
+            <div class="testimonial">
+              <p>
+                “LNWeb delivered a responsive and modern solution exactly as required.”
+              </p>
+              <h4>— Startup Owner</h4>
+            </div>
+          </div>
+
+          <div class="testimonial-slide">
+            <div class="testimonial">
+              <p>
+                “Fast delivery, modern UI, and excellent support throughout the project.”
+              </p>
+              <h4>— Software Client</h4>
+            </div>
+
+            <div class="testimonial">
+              <p>
+                “The project was completed professionally with all custom requirements.”
+              </p>
+              <h4>— Local Business</h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .testimonial-slider-container {
+      overflow: hidden;
+      width: 100%;
+      position: relative;
+    }
+
+    .testimonial-slider-track {
+      display: flex;
+      width: 200%;
+      animation: slideTestimonials 12s infinite;
+    }
+
+    .testimonial-slide {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 10px;
+      flex-shrink: 0;
+    }
+
+    @keyframes slideTestimonials {
+      0% {
+        transform: translateX(0%);
+      }
+
+      45% {
+        transform: translateX(0%);
+      }
+
+      50% {
+        transform: translateX(-50%);
+      }
+
+      95% {
+        transform: translateX(-50%);
+      }
+
+      100% {
+        transform: translateX(0%);
+      }
+    }
+
+    @media(max-width: 768px) {
+      .testimonial-slide {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <!-- Contact -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact <span>Us</span></h2>
+
+      <form action="https://formsubmit.co/niralitandel2302@gmail.com" method="POST">
+
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea rows="5" name="message" placeholder="Your Message"></textarea>
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="http://localhost/lnweb-website/thankyou.html">
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="logo"><span>LN</span>Web</div>
+    <p>© 2026 LNWeb. All Rights Reserved.</p>
+  </footer>
 
 </body>
+
 </html>
